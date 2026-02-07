@@ -1,0 +1,15 @@
+framework: nestjs
+database: mongodb
+health_check_path: /health
+app_port_env: PORT # Environment variable name for the app port
+app_port: 3000 # Port the app listens on
+
+app_entrypoint: src/index.js
+
+extra_services:
+  - redis
+
+# Optional: Commands run inside the app container before the main process (migrations, seeding)
+# startup_commands:
+#   - npm run migration:run
+#   - npm run seed

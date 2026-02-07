@@ -6,13 +6,14 @@ const { connect: connectRedis, close: closeRedis } = require('./redis');
 const PORT = parseInt(process.env.PORT || '3000', 10);
 
 async function main() {
-  try {
-    await connectDb();
-    connectRedis();
-  } catch (err) {
-    console.error('Failed to connect:', err.message);
-    process.exit(1);
-  }
+    await connectDb().catch(err => {
+      console.error('Failed to connect to database:', err.message);
+      process.exit(1);
+    });
+    connectRedis().catch(err => {
+      console.error('Failed to connect to Redis:', err.message);
+      process.exit(1);
+    });
 
   const server = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

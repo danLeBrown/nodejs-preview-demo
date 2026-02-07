@@ -10,7 +10,7 @@ async function main() {
       console.error('Failed to connect to database:', err.message);
       process.exit(1);
     });
-    connectRedis().catch(err => {
+    await (Promise.resolve(connectRedis())).catch(err => {
       console.error('Failed to connect to Redis:', err.message);
       process.exit(1);
     });

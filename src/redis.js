@@ -3,7 +3,7 @@ const Redis = require('ioredis');
 let redis = null;
 
 function connect() {
-  const url = process.env.REDIS_URL || 'redis://localhost:6379';
+  const url = process.env.REDIS_URL || 'redis://redis:6379';
   redis = new Redis(url);
   return redis;
 }

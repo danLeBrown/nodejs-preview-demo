@@ -4,11 +4,12 @@ let client = null;
 let defaultDb = null;
 
 async function connect() {
-  const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/preview-demo';
-  client = new MongoClient(uri);
+  const uri = process.env.DATABASE_URL || 'mongodb://mongodb:27017/preview-demo';
+  client = new MongoClient(uri);  
   await client.connect();
   const dbName = new URL(uri).pathname.slice(1) || 'preview-demo';
   defaultDb = client.db(dbName);
+
   return client;
 }
 

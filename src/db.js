@@ -9,6 +9,11 @@ async function connect() {
   await client.connect();
   const dbName = new URL(uri).pathname.slice(1) || 'preview-demo';
   defaultDb = client.db(dbName);
+
+  console.log('uri', uri);
+  console.log('dbName', dbName);
+  // console.log('client', client);
+  console.log('defaultDb', defaultDb);
   return client;
 }
 
